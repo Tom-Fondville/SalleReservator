@@ -9,7 +9,7 @@ public class Salle {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     @Id
-    private Long id;
+    public Long id;
     public String nom;
     public int nombrePlaces;
     public boolean videoProjecteur;

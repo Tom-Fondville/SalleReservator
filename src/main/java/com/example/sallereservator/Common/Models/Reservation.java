@@ -14,10 +14,13 @@ import java.util.Date;
 public class Reservation {
 
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name = "idSalle", nullable = false)
+    @Column(name = "id", nullable = false)
     @Id
-    private Long idSalle;
-    public int IdUser;
-    public Date StartDate;
-    public Date EndDate;
+    public Long id;
+
+    @OneToOne
+    public Salle salle;
+    public String userName;
+    public Date startDate;
+    public Date endDate;
 }
