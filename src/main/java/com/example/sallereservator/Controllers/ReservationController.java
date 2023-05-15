@@ -1,7 +1,6 @@
 package com.example.sallereservator.Controllers;
 
 import com.example.sallereservator.Common.Models.Reservation;
-import com.example.sallereservator.Common.Models.Salle;
 import com.example.sallereservator.Repositories.ReservationRepostory;
 import com.example.sallereservator.Services.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;

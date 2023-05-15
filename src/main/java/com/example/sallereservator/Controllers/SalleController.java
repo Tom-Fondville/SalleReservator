@@ -1,7 +1,9 @@
 package com.example.sallereservator.Controllers;
 
 import com.example.sallereservator.Common.Models.Salle;
+import com.example.sallereservator.Common.Requests.SalleReponses;
 import com.example.sallereservator.Repositories.SalleRepository;
+import com.example.sallereservator.Services.SalleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,10 +16,13 @@ public class SalleController {
     @Autowired
     SalleRepository salleRepository;
 
+    @Autowired
+    SalleService salleService;
+
 
     @GetMapping()
-    public Iterable<Salle> GetAllSalles(){
-        return salleRepository.findAll();
+    public Iterable<SalleReponses> GetAllSalles(){
+        return salleService.GetSalles();
     }
 
     @GetMapping(path = "/{id}")

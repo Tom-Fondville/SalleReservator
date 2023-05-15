@@ -1,0 +1,12 @@
+package com.example.sallereservator.Common.Requests;
+
+import com.example.sallereservator.Common.Models.Salle;
+
+public class SalleReponses extends Salle {
+    public boolean IsDisponible;
+
+    public SalleReponses(Salle salle, boolean isDisponible) {
+        super(salle.id, salle.nom, salle.nombrePlaces, salle.videoProjecteur, salle.pictureUrl);
+        IsDisponible = isDisponible;
+    }
+}

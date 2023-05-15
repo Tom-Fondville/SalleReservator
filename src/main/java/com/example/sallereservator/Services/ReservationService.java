@@ -5,6 +5,7 @@ import com.example.sallereservator.Repositories.ReservationRepostory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -53,6 +54,19 @@ public class ReservationService {
         }
 
         reservationRepostory.save(resToSave);
+        return true;
+    }
+    
+    public boolean IsSalleDisponible(Long id){
+        var reservations = GetReservationBySalleId(id);
+        var now = new Date(System.currentTimeMillis());
+
+
+        for (var reservation: reservations) {
+            if (reservation.startDate.before(now) && reservation.endDate.after(now))
+                return false;
+        }
+        
         return true;
     }
 
