@@ -38,8 +38,14 @@ public class ReservationController {
     }
 
     @PostMapping
-    public ResponseEntity<Reservation> CreateSalle(@RequestBody Reservation reservation){
-        reservationRepostory.save(reservation);
+    public ResponseEntity<Reservation> CreateReservation(@RequestBody Reservation reservation){
+//        reservationRepostory.save(reservation);
+//        return new ResponseEntity<>(reservation, HttpStatus.OK);
+
+        var saved = reservationService.SaveReservation(reservation);
+
+        if(!saved) return new ResponseEntity<>(reservation, HttpStatus.BAD_REQUEST);
+
         return new ResponseEntity<>(reservation, HttpStatus.OK);
     }
 

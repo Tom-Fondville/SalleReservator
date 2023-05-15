@@ -13,4 +13,5 @@ public class Salle {
     public String nom;
     public int nombrePlaces;
     public boolean videoProjecteur;
+    public String pictureUrl;
 }

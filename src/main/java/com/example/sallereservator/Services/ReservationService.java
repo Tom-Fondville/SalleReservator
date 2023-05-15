@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 @Service
 public class ReservationService {
@@ -37,5 +38,30 @@ public class ReservationService {
         });
 
         return reservations;
+    }
+
+    public boolean SaveReservation(Reservation resToSave){
+        if (resToSave.startDate.after(resToSave.endDate)) return false;
+
+        var reservations = reservationRepostory.findAll();
+        for (var reservation : reservations) {
+
+            if (reservation.salle.id == resToSave.salle.id){
+                var calandarCheck = checkCalendar(reservation, resToSave);
+                if (!calandarCheck) return false;
+            }
+        }
+
+        reservationRepostory.save(resToSave);
+        return true;
+    }
+
+    private boolean checkCalendar(Reservation reservation, Reservation resToSave){
+
+        if (resToSave.startDate.before(reservation.startDate) && resToSave.endDate.before(reservation.endDate)
+        || resToSave.startDate.after(reservation.startDate) && resToSave.endDate.after(reservation.endDate))
+            return true;
+
+        return false;
     }
 }
